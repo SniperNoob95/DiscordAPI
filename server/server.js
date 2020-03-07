@@ -1,11 +1,11 @@
-const express = require('express');
-const apiRouter = require('./routes');
+import express, { json } from 'express';
+import apiRouter from './routes';
 
 const app = express();
 
 const port = 80;
 
-app.use(express.json());
+app.use(json());
 
 app.use('/api/', apiRouter);
 

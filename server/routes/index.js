@@ -1,12 +1,12 @@
-const express = require('express');
+import { Router } from 'express';
 
-const db = require('../db');
+import { all, one } from '../db';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/sales', async (req, res, next) => {
     try {
-        let results = await db.all();
+        let results = await all();
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -16,7 +16,7 @@ router.get('/sales', async (req, res, next) => {
 
 router.get('/sales/:id', async (req, res, next) => {
     try {
-        let results = await db.one(req.params.id);
+        let results = await one(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -26,4 +26,6 @@ router.get('/sales/:id', async (req, res, next) => {
 
 
 
-module.exports = router;
+export default {
+    router
+}

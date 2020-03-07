@@ -1,6 +1,6 @@
-const mysql = require('mysql');
+import { createPool } from 'mysql';
 
-const pool = mysql.createPool({
+const pool = createPool({
     connectionLimit: 5,
     password: 'december1',
     user: 'sniperbot',
@@ -34,4 +34,6 @@ salesDB.one = (id) => {
     });
 }
 
-module.exports = salesDB;
+export default {
+    salesDB
+}
