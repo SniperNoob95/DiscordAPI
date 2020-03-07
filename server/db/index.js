@@ -1,11 +1,13 @@
 import { createPool } from 'mysql';
+const PropertiesReader = require('properties-reader');
+const properties = PropertiesReader('');
 
 const pool = createPool({
     connectionLimit: 5,
-    password: 'december1',
-    user: 'sniperbot',
-    database: 'SniperBot',
-    host: 'localhost'
+    password: properties.get('password'),
+    user: properties.get('user'),
+    database: properties.get('database'),
+    host: properties.get('host')
 });
 
 let salesDB = {};
