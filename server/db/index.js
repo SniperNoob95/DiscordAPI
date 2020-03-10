@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const PropertiesReader = require('properties-reader');
-const properties = PropertiesReader('./resources/config.properties');
+const properties = PropertiesReader('/resources/config.ini');
 
 const pool = mysql.createPool({
     connectionLimit: 5,
