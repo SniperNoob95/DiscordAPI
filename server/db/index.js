@@ -1,13 +1,13 @@
 const mysql = require('mysql');
 const PropertiesReader = require('properties-reader');
-const properties = PropertiesReader('./resources/config.ini');
+const properties = PropertiesReader('./config.ini');
 
 const pool = mysql.createPool({
     connectionLimit: 5,
-    password: properties.get('password'),
-    user: properties.get('user'),
-    database: properties.get('database'),
-    host: properties.get('host')
+    password: properties.get('database.password'),
+    user: properties.get('database.user'),
+    database: properties.get('database.database'),
+    host: properties.get('database.host')
 });
 
 let salesDB = {};
