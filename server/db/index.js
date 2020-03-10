@@ -1,6 +1,6 @@
 import { createPool } from 'mysql';
 const PropertiesReader = require('properties-reader');
-const properties = PropertiesReader('');
+const properties = PropertiesReader('/resources/config.properties');
 
 const pool = createPool({
     connectionLimit: 5,
@@ -11,6 +11,7 @@ const pool = createPool({
 });
 
 let salesDB = {};
+let messagesDB = {};
 
 salesDB.all = () => {
     return new Promise((resolve, reject) => {
@@ -26,7 +27,19 @@ salesDB.all = () => {
 
 salesDB.one = (id) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM Sales WHERE id = >', [id], (err, results) => {
+        pool.query('SELECT * FROM Sales WHERE id = ?', [id], (err, results) => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(results[0]);
+            }
+        })
+    });
+}
+
+messagesDB.count = (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT COUNT(*) FROM Messages WHERE id = ?', [id], (err, results) => {
             if (err) {
                 return reject(err);
             } else {
@@ -37,5 +50,6 @@ salesDB.one = (id) => {
 }
 
 export default {
-    salesDB
+    salesDB,
+    messagesDB
 }
