@@ -39,11 +39,11 @@ salesDB.one = (id) => {
 
 messagesDB.count = (id) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT COUNT(*) as messageCount FROM Messages WHERE id = ?', [id], (err, results) => {
+        pool.query('SELECT COUNT(*) as messageCount FROM Messages WHERE userID = ?', [id], (err, results) => {
             if (err) {
                 return reject(err);
             } else {
-                return resolve(results[0]['messageCount']);
+                return resolve(results);
             }
         })
     });
