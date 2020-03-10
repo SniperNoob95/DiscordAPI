@@ -9,7 +9,7 @@ router.get('/health', async (req, res, next) => {
 
 router.get('/sales', async (req, res, next) => {
     try {
-        let results = await db.all();
+        let results = await db.salesDB.all();
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -19,7 +19,7 @@ router.get('/sales', async (req, res, next) => {
 
 router.get('/sales/:id', async (req, res, next) => {
     try {
-        let results = await db.one(req.params.id);
+        let results = await db.salesDB.one(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -29,7 +29,7 @@ router.get('/sales/:id', async (req, res, next) => {
 
 router.get('/messages/count/:id', async (req, res, next) => {
     try {
-        let results = await db.count(req.params.id);
+        let results = await db.messagesDB.count(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);

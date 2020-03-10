@@ -43,10 +43,11 @@ messagesDB.count = (id) => {
             if (err) {
                 return reject(err);
             } else {
-                return resolve(results[0]);
+                return resolve(results);
             }
         })
     });
 }
 
-module.exports = messagesDB, salesDB;
+module.exports.messagesDB = messagesDB;
+module.exports.salesDB = salesDB;
