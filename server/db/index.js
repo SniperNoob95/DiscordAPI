@@ -49,7 +49,4 @@ messagesDB.count = (id) => {
     });
 }
 
-export default {
-    salesDB,
-    messagesDB
-}
+module.exports = messagesDB, salesDB;
