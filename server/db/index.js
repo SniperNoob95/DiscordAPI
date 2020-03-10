@@ -1,8 +1,8 @@
-import { createPool } from 'mysql';
+const mysql = require('mysql');
 const PropertiesReader = require('properties-reader');
 const properties = PropertiesReader('/resources/config.properties');
 
-const pool = createPool({
+const pool = mysql.createPool({
     connectionLimit: 5,
     password: properties.get('password'),
     user: properties.get('user'),

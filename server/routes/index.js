@@ -1,8 +1,7 @@
-import { Router } from 'express';
+const express = require('express');
+const db = require('../db');
 
-import { all, one, count } from '../db';
-
-const router = Router();
+const router = express.Router();
 
 router.get('/health', async (req, res, next) => {
     res.json({healthcheck : "responsive"});
@@ -10,7 +9,7 @@ router.get('/health', async (req, res, next) => {
 
 router.get('/sales', async (req, res, next) => {
     try {
-        let results = await all();
+        let results = await db.all();
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -20,7 +19,7 @@ router.get('/sales', async (req, res, next) => {
 
 router.get('/sales/:id', async (req, res, next) => {
     try {
-        let results = await one(req.params.id);
+        let results = await db.one(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -30,7 +29,7 @@ router.get('/sales/:id', async (req, res, next) => {
 
 router.get('/messages/count/:id', async (req, res, next) => {
     try {
-        let results = await count(req.params.id);
+        let results = await db.count(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -39,6 +38,4 @@ router.get('/messages/count/:id', async (req, res, next) => {
 });
 
 
-export default {
-    router
-}
+module.exports = router;
