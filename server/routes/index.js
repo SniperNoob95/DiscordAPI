@@ -3,7 +3,7 @@ const db = require('../db');
 
 const router = express.Router();
 
-router.post('/test', async (req, res) => {
+router.post('/test', async (req, res, next) => {
     values = [req.body.field1, req.body.field2];
     try {
         let results = await db.testDB.insert(values)
@@ -13,11 +13,11 @@ router.post('/test', async (req, res) => {
     }
 });
 
-router.get('/health', async (res) => {
+router.get('/health', async (req, res, next) => {
     res.json({healthcheck : "responsive"});
 });
 
-router.get('/sales', async (res) => {
+router.get('/sales', async (req, res, next) => {
     try {
         let results = await db.salesDB.all();
         res.json(results);
@@ -27,7 +27,7 @@ router.get('/sales', async (res) => {
     }
 });
 
-router.get('/sales/:id', async (req, res) => {
+router.get('/sales/:id', async (req, res, next) => {
     try {
         let results = await db.salesDB.one(req.params.id);
         res.json(results);
@@ -37,7 +37,7 @@ router.get('/sales/:id', async (req, res) => {
     }
 });
 
-router.get('/messages/count/:id', async (req, res) => {
+router.get('/messages/count/:id', async (req, res, next) => {
     try {
         let results = await db.messagesDB.count(req.params.id);
         res.json(results);
@@ -47,7 +47,7 @@ router.get('/messages/count/:id', async (req, res) => {
     }
 });
 
-router.get('/messages/count', async (res) => {
+router.get('/messages/count', async (req, res, next) => {
     try {
         let results = await db.messagesDB.total();
         res.json(results);
