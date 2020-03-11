@@ -24,7 +24,7 @@ router.get('/sales', async (req, res, next) => {
         let results = await db.salesDB.all();
         res.json(results);
     } catch(err) {
-        res.sendStatus(500);
+        res.status(500).send("Unable to connect to API.")
         console.log(err);
     }
 });
