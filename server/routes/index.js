@@ -10,7 +10,7 @@ router.post('/test', async (req, res, next) => {
     try {
         let results = await db.testDB.insert(values)
     } catch(err) {
-        res.sendStatus(500);
+        res.status(500).send("Unable to perform insert.");
         console.log(err);
     }
 });

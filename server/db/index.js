@@ -17,7 +17,7 @@ let testDB = {};
 testDB.insert = (values) => {
     console.log([values]);
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO test (field1, field2) VALUES ?', values, (err, results) => {
+        pool.query('INSERT INTO test (field1, field2) VALUES ?', [values], (err, results) => {
             if (err) {
                 return reject(err);
             } else {
