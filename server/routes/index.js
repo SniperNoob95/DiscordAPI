@@ -8,7 +8,8 @@ router.post('/test', async (req, res, next) => {
     console.log(values);
     console.log(req.body.field2);
     try {
-        let results = await db.testDB.insert(values)
+        let results = await db.testDB.insert(values);
+        res.json(results);
     } catch(err) {
         res.status(500).send("Unable to perform insert.");
         console.log(err);
