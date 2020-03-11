@@ -5,11 +5,9 @@ const router = express.Router();
 
 router.post('/test', async (req, res, next) => {
     values = [req.body.field1, req.body.field2];
-    console.log(values);
-    console.log(req.body.field2);
     try {
         let results = await db.testDB.insert(values);
-        res.json(results);
+        res.json({"affectedRows": results.affectedRows});
     } catch(err) {
         res.status(500).send("Unable to perform insert.");
         console.log(err);
@@ -17,7 +15,7 @@ router.post('/test', async (req, res, next) => {
 });
 
 router.get('/health', async (req, res, next) => {
-    res.json({healthcheck : "responsive"});
+    res.json({"healthcheck" : "responsive"});
 });
 
 router.get('/sales', async (req, res, next) => {
