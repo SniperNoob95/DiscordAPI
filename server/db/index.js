@@ -12,6 +12,19 @@ const pool = mysql.createPool({
 
 let salesDB = {};
 let messagesDB = {};
+let testDB = {};
+
+testDB.insert = (values) => {
+    return new Promise((resolve, reject) => {
+        pool.query('INSERT INTO test (field1, field2) VALUES ?', [values], (err, results) => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(results);
+            }
+        })
+    });
+};
 
 salesDB.all = () => {
     return new Promise((resolve, reject) => {
@@ -39,7 +52,7 @@ salesDB.one = (id) => {
 
 messagesDB.count = (id) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT COUNT(*) as messageCount FROM Messages WHERE userID = ?', [id], (err, results) => {
+        pool.query('SELECT COUNT(*) as count FROM Messages WHERE userID = ?', [id], (err, results) => {
             if (err) {
                 return reject(err);
             } else {
@@ -49,5 +62,18 @@ messagesDB.count = (id) => {
     });
 }
 
+messagesDB.total = () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT COUNT(*) as count FROM Messages', (err, results) => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(results);
+            }
+        })
+    });
+};
+
 module.exports.messagesDB = messagesDB;
 module.exports.salesDB = salesDB;
+module.exports.testDB = testDB;
