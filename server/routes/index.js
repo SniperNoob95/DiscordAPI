@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post('/test', async (req, res, next) => {
     values = [req.body.field1, req.body.field2];
+    console.log(values);
+    console.log(req.body.field2);
     try {
         let results = await db.testDB.insert(values)
     } catch(err) {
