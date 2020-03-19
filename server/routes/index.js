@@ -66,9 +66,9 @@ router.post('/messages', async (req, res, next) => {
     }
 });
 
-router.get('/messages/count', async (req, res, next) => {
+router.get('/messages/count/:id', async (req, res, next) => {
     try {
-        let results = await db.messagesDB.count(req.body.userID);
+        let results = await db.messagesDB.count(req.params.id);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
