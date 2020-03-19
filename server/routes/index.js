@@ -29,7 +29,7 @@ router.post('/sales', async (req, res, next) => {
     }
 });
 
-router.get('/sales/count', async (req, res, next) => {
+router.get('/sales/total', async (req, res, next) => {
     try {
         let results = await db.salesDB.total();
         res.json(results);
@@ -66,9 +66,9 @@ router.post('/messages', async (req, res, next) => {
     }
 });
 
-router.get('/messages/count/:id', async (req, res, next) => {
+router.get('/messages/count', async (req, res, next) => {
     try {
-        let results = await db.messagesDB.count(req.params.id);
+        let results = await db.messagesDB.count(req.body.userID);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
@@ -76,7 +76,7 @@ router.get('/messages/count/:id', async (req, res, next) => {
     }
 });
 
-router.get('/messages/count', async (req, res, next) => {
+router.get('/messages/total', async (req, res, next) => {
     try {
         let results = await db.messagesDB.total();
         res.json(results);
