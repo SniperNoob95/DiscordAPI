@@ -94,6 +94,8 @@ router.post('/commands', async (req, res, next) => {
         req.body.userDiscriminator,
         req.body.command
     ];
+
+    console.log(values);
     try {
         let results = await db.commandsDB.insert(values);
         res.status(201).json({"affectedRows": results.affectedRows});
