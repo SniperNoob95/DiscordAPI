@@ -22,7 +22,7 @@ router.post('/sales', async (req, res, next) => {
     ];
     try {
         let results = await db.salesDB.insert(values);
-        res.json({"affectedRows": results.affectedRows});
+        res.status(201).json({"affectedRows": results.affectedRows});
     } catch(err) {
         res.status(500).send("Unable to perform insert.");
         console.log(err);
@@ -59,7 +59,7 @@ router.post('/messages', async (req, res, next) => {
     ];
     try {
         let results = await db.messagesDB.insert(values);
-        res.json({"affectedRows": results.affectedRows});
+        res.status(201).json({"affectedRows": results.affectedRows});
     } catch(err) {
         res.status(500).send("Unable to perform insert.");
         console.log(err);
@@ -96,7 +96,7 @@ router.post('/commands', async (req, res, next) => {
     ];
     try {
         let results = await db.commandsDB.insert(values);
-        res.json({"affectedRows": results.affectedRows});
+        res.status(201).json({"affectedRows": results.affectedRows});
     } catch(err) {
         res.status(500).send("Unable to perform insert.");
         console.log(err);
