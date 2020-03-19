@@ -41,7 +41,7 @@ router.get('/sales/total', async (req, res, next) => {
 
 router.get('/sales/item', async (req, res, next) => {
     try {
-        let results = await db.salesDB.item(req.body.itemName);
+        let results = await db.salesDB.item(req.query.itemName);
         res.json(results);
     } catch(err) {
         res.sendStatus(500);
