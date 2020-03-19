@@ -39,7 +39,7 @@ router.get('/sales/count', async (req, res, next) => {
     }
 });
 
-router.get('/sales/:item', async (req, res, next) => {
+router.get('/sales/item', async (req, res, next) => {
     try {
         let results = await db.salesDB.item(req.body.itemName);
         res.json(results);
