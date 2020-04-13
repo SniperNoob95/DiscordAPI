@@ -7,7 +7,8 @@ const pool = mysql.createPool({
     password: properties.get('database.password'),
     user: properties.get('database.user'),
     database: properties.get('database.database'),
-    host: properties.get('database.host')
+    host: properties.get('database.host'),
+    charset: 'utf8mb4'
 });
 
 let salesDB = {};
