@@ -17,7 +17,7 @@ let commandsDB = {};
 
 salesDB.insert = (values) => {
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO Sales (date, enteredID, enteredName, sellerID, sellerName, item, itemQuality, spell1, spell1, price) VALUES (?)', [values], (err, results) => {
+        pool.query('INSERT INTO Sales (date, enteredID, enteredName, sellerID, sellerName, item, itemQuality, spell1, spell2, price) VALUES (?)', [values], (err, results) => {
             if (err) {
                 return reject(err);
             } else {
