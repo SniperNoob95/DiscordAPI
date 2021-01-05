@@ -1,1 +1,1 @@
-screen -d -m sudo npm run dev
+screen -S DiscordAPI -d -m npm run dev
